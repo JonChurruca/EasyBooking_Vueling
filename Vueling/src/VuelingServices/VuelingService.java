@@ -20,7 +20,8 @@ public class VuelingService extends UnicastRemoteObject  implements IVuelingServ
 	//private List<Flight> selectedFlights;
 	//private List<FlightDTO> selectedFlightsDTO;
 	
-	public List<Integer> selectedFlights; 
+	//public List<Integer> selectedFlights; 
+	private String flight; 
 	
 	Flight f1 = new Flight(2221, "13-02-2020", "13-02-2020", "13:00", "11:30", "Madrid", "Roma", "Vueling");
 	Flight f2 = new Flight(2222, "13-02-2020", "13-02-2020", "16:30", "14:00", "Roma", "Madrid", "Vueling");
@@ -33,22 +34,26 @@ public class VuelingService extends UnicastRemoteObject  implements IVuelingServ
 	}
 	
 	@Override
-	public List<Integer> getFlights(String depAirport, String arrivalAirport, String depDate)
+	public String getFlights(String depAirport, String arrivalAirport, String depDate)
 			throws RemoteException {
 
-		selectedFlights = new ArrayList<>(); 
+		//selectedFlights = new ArrayList<>(); 
 	 
 		
 		for (Flight dflight : defaultFlights) {
 			
-			if (dflight.getArrivalAirport().compareTo(arrivalAirport) == 0 && dflight.getDepAirport().compareTo(depAirport) == 0 && dflight.getDepDate().compareTo(depDate)== 0) {
+			if (dflight.getArrivalAirport().equals(arrivalAirport)  && dflight.getDepAirport().equals(depAirport) && dflight.getDepDate().equals(depDate)) {
 				
-				selectedFlights.add(dflight.getFlightID()); 	
+
+				flight = dflight.getFlightID() + "#" +dflight.getAirline()+"#"+ dflight.getArrivalDate()+"#"+ 
+				dflight.getDepDate()+"#"+ dflight.getArrivalTime()+"#"+dflight.getDepTime()+"#"+dflight.getDepAirport() +"#"+dflight.getArrivalAirport(); 
+				System.out.println(flight);
+				//selectedFlights.add(dflight.getFlightID()); 	
 			}	
 		}
 		
 		
-		return selectedFlights;
+		return flight;
 	}
 	
 	

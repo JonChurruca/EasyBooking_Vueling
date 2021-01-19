@@ -9,7 +9,7 @@ import data.FlightDTO;
 
 public interface IVuelingService extends Remote {
     //List<FlightDTO> getFlights(String depAirport, String arrivalAirport, String depDate) throws RemoteException;    
-    List<Integer> getFlights(String depAirport, String arrivalAirport, String depDate) throws RemoteException;    
+    String getFlights(String depAirport, String arrivalAirport, String depDate) throws RemoteException;    
 
 
 }
